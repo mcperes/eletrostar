@@ -11,6 +11,7 @@ class ProdutosController extends Controller
 {
   public function index() {
 
+    // o gride de produtos ja tras a unidade e ordena pela descricao 
     $linhas = DB::select("SELECT produtos.*,unidades.descricao as uniddesc  
              from produtos inner join unidades on 
              produtos.id_unidade=unidades.id_unidade  
@@ -19,6 +20,7 @@ class ProdutosController extends Controller
   } 
 
   public function adicionar () {
+    // look unidade sera usado pelo select do form
     $LookUnidades = Unidades::all(['id_unidade','descricao']);
     return view('admin.produtos.adicionar',compact('LookUnidades'));
   }

@@ -11,11 +11,34 @@
   <label>Valor</label>
 </div>
 
+@php 
+    // testa se é inclusao pq se for, 
+    // nao tem valor em $linha
+    // guarda em $_id_unidade pra testar
+    // dentro do foreach
+    if ( isset($linha->id_unidade) ) {
+         $_id_unidade = $linha->id_unidade;
+         $escolha = "";
+    } else {
+      $_id_unidade = "-1";
+      $escolha = "<option value='0' selected>Escolha</option>";
+    }
+@endphp 
+
 <div class="input-field col s12">
   <select name="id_unidade" id="id_unidade">
-    @foreach($LookUnidades as $LookUnidade)
-      <option value="{{$LookUnidade->id_unidade}}" {{ $LookUnidade->id_unidade == $linha->id_unidade ? 'selected' : '' }}>{{$LookUnidade->descricao}}</option>
-    @endforeach
+      @php 
+          // imprime opcao com mensagem 'escolha' se inclusao
+          echo $escolha;  
+      @endphp
+      <!-- faz laco para imprimir opcoes -->    
+      @foreach($LookUnidades as $LookUnidade)
+        @php 
+          // define qual opcao esta preselecionada
+          $selected = $LookUnidade->id_unidade == $_id_unidade ? 'selected' : '';  
+        @endphp      
+        <option value="{{$LookUnidade->id_unidade}}" {{ $selected }}>{{$LookUnidade->descricao}}</option>
+      @endforeach
   </select>
   <label>Unidade</label>
 </div>

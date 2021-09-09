@@ -12,33 +12,33 @@ class PedidosController extends Controller
     
     public function listar()
     {
-        // busca todos os produtos e mostra  
+        // busca todos os pedidos e mostra  
         return Pedidos::All();
     }
 
     public function salvar(Request $req)
     {
-        // insere produto 
+        // insere pedidos 
         return Pedidos::create($req->all());
     }
 
     public function atualizar(Request $request, $id)
     {
-        // busca pelo produto e atualiza
+        // busca pelo pedidos e atualiza
         $Pedido = Pedidos::findOrFail($id);
         $Pedido->update($request->all()); 
     }
 
     public function excluir($id)
     {
-        // busca pelo produto e exclui
+        // busca pelo pedidos e exclui
         $Pedido = Pedidos::findOrFail($id);
         $Pedido->delete(); 
     }
 
     public function procurar($id)
     {
-        // busca pelo produto e mostra
+        // busca pelo pedidos e mostra
         return Pedidos::findOrFail($id);
     }
 

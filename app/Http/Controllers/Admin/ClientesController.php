@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Clientes;
-use DB; 
+use DB;   //  requer essa classe quando usa frase sql
 
 class ClientesController extends Controller 
 {
@@ -20,7 +20,7 @@ class ClientesController extends Controller
 
   public function salvar(Request $req)  {
     $dados = $req->all();
-    Clientes::create($dados);
+    Clientes::create($dados); // equivale a insert
     return redirect()->route('admin.clientes');
   }
 
@@ -30,13 +30,13 @@ class ClientesController extends Controller
   }
 
   public function excluir($id) {
-    Clientes::find($id)->delete();
+    Clientes::find($id)->delete();  // equivale a delete
     return redirect()->route('admin.clientes');
   }
 
   public function atualizar(Request $req, $id)  {
     $dados = $req->all();
-    Clientes::find($id)->update($dados);
+    Clientes::find($id)->update($dados);  // equivale a update sql
     return redirect()->route('admin.clientes');
   }
   

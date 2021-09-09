@@ -11,26 +11,26 @@ class ClientesController extends Controller
     
     public function listar()
     {
-        // busca todos os produtos e mostra  
+        // busca todos os clientes e mostra  
         return Clientes::All();
     }
 
     public function salvar(Request $req)
     {
-        // insere produto 
+        // insere cliente 
         return Clientes::create($req->all());
     }
 
     public function atualizar(Request $request, $id)
     {
-        // busca pelo produto e atualiza
+        // busca pelo cliente e atualiza
         $Cliente = Clientes::findOrFail($id);
         $Cliente->update($request->all()); 
     }
 
     public function excluir($id)
     {
-        // busca pelo produto e exclui
+        // busca pelo cliente e exclui
         $Cliente = Clientes::findOrFail($id);
         $Cliente->delete(); 
 
@@ -38,7 +38,7 @@ class ClientesController extends Controller
 
     public function procurar($id)
     {
-        // busca pelo produto e mostra
+        // busca pelo cliente e mostra
         return Clientes::findOrFail($id);
     }
 }

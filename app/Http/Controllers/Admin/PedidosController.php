@@ -13,6 +13,9 @@ class PedidosController extends Controller
 {
   public function index() {
 
+   // essa linha cria o gride de pedidos, repare
+   // que ele faz a somatoria de todos os sub totais
+   // calculando na hora   
    $linhas = DB::select("SELECT pedidos.id_pedido,pedidos.id_cliente,pedidos.data,clientes.nome, 
                  sum(itenspedidos.qtd * produtos.valor) as pedtotal   
              from pedidos inner join clientes on 
@@ -27,6 +30,8 @@ class PedidosController extends Controller
   } 
 
   public function adicionar () {
+    // repare que o look de clientes será usado para selecionar o 
+    // cliente do pedido no form select 
     $LookClientes = Clientes::all(['id_cliente','nome']);
     return view('admin.pedidos.adicionar', compact('LookClientes'));
   }
